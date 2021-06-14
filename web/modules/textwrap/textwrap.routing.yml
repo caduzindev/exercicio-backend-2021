@@ -1,7 +1,7 @@
 textwrap.content:
-  path: '/textwrap'
+  path: '/desafio'
   defaults:
-    _controller: '\Drupal\textwrap\Controller\Controller::content'
+    _controller: '\Drupal\textwrap\Controller\TextWrapController::content'
     _title: 'Bem vindo a pagina de desafio'
-  requirement:
+  requirements:
     _permission: 'access content'
