@@ -3,4 +3,4 @@ description: Exercício de PHP
 package: Chuva Inc.
 
 type: module
-core: 9.x
+core_version_requirement: 8.x || 9.x
