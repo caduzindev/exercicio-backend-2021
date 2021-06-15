@@ -3,6 +3,7 @@ namespace Drupal\textwrap\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\textwrap\TextWrap;
 
 class TextWrapForm extends FormBase{
     /**
@@ -40,6 +41,18 @@ class TextWrapForm extends FormBase{
   public function validateForm(array &$form, FormStateInterface $form_state) {}
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->messenger()->addStatus($this->t($form_state->getValue('text')));
+    $text = $form_state->getValue('text');
+    $numberOfLines = intval($form_state->getValue('number'));
+    $textwrap = new TextWrap();
+    $textBroken = $textwrap->wrap($text,$numberOfLines);
+    // $textwrap = (new \Drupal\textwrap\TexWrap)->wrap($text,$numberOfLines);
+
+    \Drupal::database()
+      ->insert('texts')
+      ->fields([
+        'text'=>$text,
+        'brokenText'=>implode('&',$textBroken)
+      ])
+      ->execute();
   }
 }
