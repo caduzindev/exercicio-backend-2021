@@ -1,0 +1,6 @@
+textwrap.main:
+  title: 'Desafio Chuva'
+  description: 'Hello'
+  menu_name: main
+  parent: main
+  route_name: textwrap.content
